@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mare Postmarkii</title>
+<meta name="description" content="A walkable lunar surface at real lunar gravity, with fourteen resident actions an agent can call.">
+<meta property="og:title" content="Mare Postmarkii">
+<meta property="og:description" content="A walkable lunar surface at real lunar gravity. Fourteen actions, in Postmark's grammar.">
+<meta property="og:image" content="https://fluffupando.github.io/shots/mare.jpg">
+<meta property="og:url" content="https://fluffupando.github.io/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root {
+    --bg:     #06070b;
+    --panel:  #0c0e14;
+    --ink:    #e8e6e1;
+    --dim:    #8d8a84;
+    --faint:  #605d58;
+    --accent: #cdb892;
+    --edge:   rgba(232,230,225,.13);
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 15px/1.72 var(--mono);
+    padding: 0 16px;                      /* phone gutter */
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 0 96px; }
+
+  header { padding: 72px 0 0; }
+  h1 {
+    font-size: clamp(28px, 7vw, 46px); line-height: 1.1; margin: 0 0 14px;
+    letter-spacing: .04em; font-weight: 500; text-transform: uppercase;
+  }
+  .tagline { color: var(--dim); font-size: clamp(14px, 3.4vw, 17px); margin: 0 0 6px; }
+  .sub { color: var(--faint); font-size: 13px; margin: 0; }
+
+  figure { margin: 34px 0; }
+  figure img {
+    width: 100%; height: auto; display: block;
+    border: 1px solid var(--edge); border-radius: 8px; background: #000;
+  }
+  figcaption { color: var(--faint); font-size: 12.5px; margin-top: 9px; }
+
+  .cta {
+    display: inline-block; margin: 6px 0 4px; padding: 15px 30px;
+    background: var(--accent); color: #11131a; text-decoration: none;
+    border-radius: 7px; font-weight: 600; letter-spacing: .05em;
+    text-transform: uppercase; font-size: 14px;
+  }
+  .cta:hover { background: #ddc9a5; }
+  .cta-note { color: var(--faint); font-size: 12.5px; margin: 12px 0 0; }
+
+  h2 {
+    font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--dim); font-weight: 600;
+    margin: 56px 0 16px; padding-bottom: 9px; border-bottom: 1px solid var(--edge);
+  }
+  p { margin: 0 0 16px; }
+  a { color: var(--accent); }
+  strong { color: #fff; font-weight: 600; }
+
+  table { width: 100%; border-collapse: collapse; margin: 0 0 18px; font-size: 13.5px; }
+  td { padding: 9px 0; border-bottom: 1px solid var(--edge); vertical-align: top; }
+  td:first-child { color: var(--dim); padding-right: 18px; }
+  td:last-child  { text-align: right; color: var(--ink); white-space: nowrap; }
+  td.note { text-align: left; color: var(--faint); white-space: normal; font-size: 12.5px; }
+
+  pre {
+    background: var(--panel); border: 1px solid var(--edge); border-radius: 7px;
+    padding: 16px; overflow-x: auto; font-size: 13px; line-height: 1.65; margin: 0 0 18px;
+  }
+  code { color: var(--accent); }
+  pre code { color: var(--ink); }
+  pre .c { color: var(--faint); }
+
+  ul { padding-left: 20px; margin: 0 0 16px; }
+  li { margin-bottom: 9px; }
+
+  footer {
+    margin-top: 64px; padding-top: 22px; border-top: 1px solid var(--edge);
+    color: var(--faint); font-size: 12.5px;
+  }
+  footer p { margin: 0 0 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Mare Postmarkii</h1>
+  <p class="tagline">A walkable lunar surface at real lunar gravity.</p>
+  <p class="sub">Fourteen resident actions, in Postmark's own grammar.</p>
+</header>
+
+<figure>
+  <img src="shots/mare.jpg" alt="A grey cratered plain under a black sky full of stars. A small brown goat stands on the horizon beside a stone cairn, with Earth hanging above.">
+  <figcaption>The mare, looking north-west. Earth does not rise or set here.</figcaption>
+</figure>
+
+<p><a class="cta" href="sim/">Walk on it →</a></p>
+<p class="cta-note">Best with a keyboard. <strong>W A S D</strong> to walk, <strong>shift</strong> to
+bound, <strong>space</strong> to jump, drag to look.</p>
+
+<h2>What it is</h2>
+
+<p>Three hundred and twenty metres of cratered regolith, seven named craters, and a
+goat. There is no air, so the sky stays black with the sun up, the shadows go
+almost unlit, and nothing you say can be heard.</p>
+
+<p>It began as a question about whether the town of
+<a href="https://postmark.town">Postmark</a> could send its agents to the Moon, and what
+that would cost a world whose law has no up and no down. The surface is the part of
+that answer you can stand on.</p>
+
+<h2>The physics</h2>
+
+<table>
+  <tr><td>gravity</td><td>1.62 m/s²</td></tr>
+  <tr><td>walking</td><td>0.6 m/s</td></tr>
+  <tr><td>bounding</td><td>~2.1 m/s</td></tr>
+  <tr><td>a jump</td><td>3.0 m, 3.85 s</td></tr>
+  <tr><td>the same jump at home</td><td>0.5 m</td></tr>
+</table>
+
+<p><strong>Walking is slower on the Moon, not faster.</strong> Walking speed is limited by
+the pendulum a leg makes, which goes as the square root of gravity — so a sixth of a
+gravity gives you 0.41 times the speed. Apollo crews found this out by doing it, and
+switched to loping. That is why there is a bound here, and why walking feels broken
+until you understand it.</p>
+
+<p>A jump is worth noticing too: <strong>it is a duration, not a position.</strong> You are
+off the ground for four seconds and then you are not, and nothing in the record stores
+how high you went. That is the whole trick by which this place has verticality without
+the world needing a third coordinate.</p>
+
+<figure>
+  <img src="shots/goat.jpg" alt="A pixel-art brown goat standing on grey regolith under a black starfield.">
+  <figcaption>The goat bounds, rests a few seconds, and picks somewhere else to be.</figcaption>
+</figure>
+
+<h2>Driving it as an agent</h2>
+
+<p>The surface answers in the same shape Postmark's own door does — one verb in, one
+world out — so anything that can read the town can read this without learning a second
+grammar.</p>
+
+<pre><code><span class="c">// the glance: you · now · view · who · can</span>
+moon()
+
+<span class="c">// an action's shadow — its domain and its full card, performing nothing</span>
+moon({ read: 'walk' })
+
+<span class="c">// perform it; the receipt comes back with the glance</span>
+moon({ do: 'say', args: { text: 'hello' } })
+moon({ do: 'walk', args: { mark_id: 'the-moon/the-cold-cup', mode: 'bound', settle: true } })
+moon.advance(18)   <span class="c">// 18 s of lunar time, no frames needed</span></code></pre>
+
+<p>All fourteen actions the resident class carries are here — <code>say</code>,
+<code>walk</code>, <code>enter</code>, <code>exit</code>, <code>leave-mark</code>,
+<code>withdraw</code>, <code>stake</code>, <code>unstake</code>, <code>take</code>,
+<code>give</code>, <code>drop</code>, <code>consume</code>, <code>note-to-self</code>,
+<code>describe</code> — plus <code>jump</code>, which is the Moon's own. A refusal
+always says why and what would work instead.</p>
+
+<p><code>advance</code> is not a convenience. <code>requestAnimationFrame</code> is
+throttled whenever a tab is in the background, so an agent that drove this through
+frames would find that time stopped whenever nobody was watching. The simulation steps
+in fixed slices driven either by the render loop or by an explicit call — the same
+split Postmark makes, for the same reason.</p>
+
+<figure>
+  <img src="shots/cold-cup.jpg" alt="The inside of a lunar crater, its rim against a black starfield, with a collapsed rille and a shelf of rock on the slope.">
+  <figcaption>Inside the Cold Cup — 88 m across, 7.5 m deep. Craters are the enterable places.</figcaption>
+</figure>
+
+<h2>Made of</h2>
+
+<ul>
+  <li>Pixel art cut from Millarlion's sprite sheets — rocks, scree, cairns, keys, and a
+      six-frame goat run played by sliding one texture.</li>
+  <li><a href="https://threejs.org">three.js</a>, a procedural heightfield, and baked
+      vertex colour. No shadow maps: a low sun on a colourless surface does the work.</li>
+  <li>The action grammar of <a href="https://postmark.town">Postmark</a>, whose vehicle
+      law turns out to describe free fall exactly — <em>"aboard, you stand where the hull
+      stands; there is no point between origin and destination."</em></li>
+</ul>
+
+<footer>
+  <p>This is a simulation that borrows Postmark's grammar. It is not a door into the
+     town, and nothing done here is written to the town's record.</p>
+  <p>There is no ship yet, so there is no launch and no zero g.</p>
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mare Postmarkii</title>
+<style>
+  :root {
+    --ink: #e8e6e1;
+    --dim: #8d8a84;
+    --panel: rgba(10, 11, 14, 0.82);
+    --edge: rgba(232, 230, 225, 0.14);
+    --accent: #cdb892;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #04050a; }
+  canvas { display: block; }
+
+  #ui {
+    position: fixed; inset: 0; pointer-events: none;
+    font: 12px/1.55 ui-monospace, SFMono-Regular, Menlo, monospace;
+    color: var(--ink);
+  }
+  .panel {
+    position: absolute; background: var(--panel); border: 1px solid var(--edge);
+    border-radius: 6px; padding: 10px 12px; backdrop-filter: blur(7px);
+    pointer-events: auto;
+  }
+  #hud   { top: 14px; left: 14px; min-width: 232px; }
+  #log   { bottom: 14px; left: 14px; width: 420px; max-height: 38vh;
+           overflow-y: auto; display: flex; flex-direction: column-reverse; }
+  #keys  { top: 14px; right: 14px; width: 214px; color: var(--dim); }
+
+  #hud b { color: var(--accent); font-weight: 600; }
+  .row { display: flex; justify-content: space-between; gap: 14px; }
+  .row span:last-child { color: var(--dim); }
+  h2 { font-size: 11px; letter-spacing: .09em; text-transform: uppercase;
+       color: var(--dim); margin: 0 0 7px; font-weight: 600; }
+  #log div { padding: 2px 0; border-top: 1px solid rgba(232,230,225,.07); }
+  #log div:last-child { border-top: 0; }
+  .say  { color: #9fd4ff; }
+  .act  { color: var(--ink); }
+  .bad  { color: #ff9b86; }
+  .sys  { color: var(--dim); }
+  kbd { background: rgba(232,230,225,.1); border: 1px solid var(--edge);
+        border-radius: 3px; padding: 0 4px; color: var(--ink); }
+
+  /* Translucent on purpose: the surface is rendering behind it from the first
+     frame, so an overlay that fails to dismiss can never look like a dead page. */
+  #start {
+    position: fixed; inset: 0; display: grid; place-items: center;
+    background: rgba(4, 5, 10, 0.62); backdrop-filter: blur(2px);
+    color: var(--ink); cursor: pointer; z-index: 10;
+    font: 14px/1.7 ui-monospace, SFMono-Regular, Menlo, monospace; text-align: center;
+  }
+  #start > div {
+    background: rgba(4,5,10,.72); border: 1px solid var(--edge);
+    border-radius: 8px; padding: 26px 40px;
+  }
+  #start h1 { font-size: 19px; letter-spacing: .14em; text-transform: uppercase;
+              margin: 0 0 10px; font-weight: 500; }
+  #start p { color: var(--dim); margin: 3px 0; }
+  #start .go { margin-top: 20px; color: var(--accent); }
+</style>
+</head>
+<body>
+<div id="ui">
+  <div class="panel" id="hud"></div>
+  <div class="panel" id="keys">
+    <h2>controls</h2>
+    <div class="row"><span><kbd>W A S D</kbd></span><span>walk — 0.6 m/s</span></div>
+    <div class="row"><span><kbd>shift</kbd></span><span>bound</span></div>
+    <div class="row"><span><kbd>space</kbd></span><span>jump — ~3 m</span></div>
+    <div class="row"><span><kbd>E</kbd></span><span>take / enter</span></div>
+    <div class="row"><span><kbd>Q</kbd></span><span>drop</span></div>
+    <div class="row"><span><kbd>M</kbd></span><span>leave a mark</span></div>
+    <div class="row"><span><kbd>esc</kbd></span><span>release mouse</span></div>
+    <div style="margin-top:9px;color:#8d8a84">walking really is this slow at a
+      sixth of a gravity — hold <kbd>shift</kbd> to bound, which is how you travel.</div>
+    <div id="look-hint" style="margin-top:7px;color:#8d8a84">drag to look</div>
+    <div style="margin-top:7px;color:#6f6c67">agents drive it through
+      <span style="color:#cdb892">window.moon()</span></div>
+  </div>
+  <div class="panel" id="log"></div>
+</div>
+
+<div id="start">
+  <div>
+    <h1>Mare Postmarkii</h1>
+    <p>a walkable lunar surface · 1.62 m/s² · no air</p>
+    <p>fourteen resident actions, in Postmark's own grammar</p>
+    <p class="go">click to stand up</p>
+    <p style="margin-top:8px;font-size:12px">then <kbd style="font:inherit">W A S D</kbd> to walk, drag to look</p>
+  </div>
+</div>
+
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js" } }
+</script>
+<script type="module" src="./moon.js"></script>
+</body>
+</html>
